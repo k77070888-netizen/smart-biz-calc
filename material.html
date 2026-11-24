@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>타일·페인트·도배지 소요량 계산기 (평수↔㎡) | 스마트비즈 계산기</title>
+<meta name="description" content="시공 면적과 자재 규격을 넣으면 로스율을 반영한 타일 장수·박스 수, 페인트 필요 리터, 도배지 롤 수를 바로 계산합니다. 평수↔㎡ 변환 포함.">
+<meta name="theme-color" content="#2557d6">
+<link rel="canonical" href="https://k77070888-netizen.github.io/smart-biz-calc/material.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="스마트비즈 계산기">
+<meta property="og:title" content="타일·페인트·도배지 소요량 계산기">
+<meta property="og:description" content="로스율까지 반영한 타일 장수·박스, 페인트 리터, 도배지 롤 수를 계산하세요.">
+<meta property="og:url" content="https://k77070888-netizen.github.io/smart-biz-calc/material.html">
+<meta property="og:image" content="https://k77070888-netizen.github.io/smart-biz-calc/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "건축·인테리어 자재 소요량 계산기",
+  "url": "https://k77070888-netizen.github.io/smart-biz-calc/material.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ko-KR",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+  "description": "타일, 페인트, 도배지 소요량과 평수·제곱미터 변환을 계산하는 무료 도구"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "1평은 몇 제곱미터인가요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "1평은 3.305785제곱미터입니다. 반대로 1제곱미터는 약 0.3025평입니다. 아파트 25평은 약 82.6제곱미터입니다." }
+    },
+    {
+      "@type": "Question",
+      "name": "타일 로스율은 몇 %로 잡아야 하나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "일반적으로 5~10%를 잡고, 모서리와 기둥이 많은 공간이나 대각 시공, 패턴 시공은 10~15%로 높입니다. 재단이 많은 소형 타일일수록 로스가 커집니다." }
+    },
+    {
+      "@type": "Question",
+      "name": "페인트 도포율은 어떻게 알 수 있나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "제품 라벨에 표시된 도포면적(㎡/L)을 확인해 입력하세요. 보통 실내 수성 페인트는 1회 도포 기준 6~10제곱미터/L이며, 바탕면이 거칠면 도포율이 떨어집니다." }
+    },
+    {
+      "@type": "Question",
+      "name": "실크벽지 한 롤로 몇 제곱미터를 도배할 수 있나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "실크벽지는 폭 106cm, 길이 15.6m 규격으로 약 16.5제곱미터입니다. 합지벽지는 길이 12.5m 기준 약 13.3제곱미터입니다. 실제로는 이음과 재단 때문에 10~15% 손실이 발생합니다." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 7h8M8 11.5h.01M12 11.5h.01M16 11.5h.01M8 15.5h.01M12 15.5h.01M16 15.5v3"/></svg>
+      </span>
+      <span class="brand-text"><strong>스마트비즈 계산기</strong><small>사장님 실무 도구</small></span>
+    </a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="margin.html">마진·수수료</a>
+      <a href="tax.html">부가세·원천세</a>
+      <a href="material.html" aria-current="page">자재 소요량</a>
+      <a href="about.html">소개</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="materialPage">
+  <div class="page-head">
+    <div class="crumbs"><a href="index.html">홈</a><span>›</span>자재 소요량 계산기</div>
+    <h1>건축·인테리어 자재 소요량 계산기</h1>
+    <p>타일 몇 박스, 페인트 몇 리터, 도배지 몇 롤. 시공 면적과 규격만 넣으면 로스율까지 반영해 계산합니다.</p>
+  </div>
+
+  <div class="panel">
+    <h2>평수 ↔ ㎡ 즉시 변환</h2>
+    <p class="panel-sub">1평 = 3.305785㎡ · 1㎡ = 0.3025평</p>
+    <div class="field-row">
+      <div class="field">
+        <label for="cvPyeong">평수</label>
+        <div class="input-wrap">
+          <input type="number" inputmode="decimal" step="0.01" min="0" id="cvPyeong" placeholder="0" autocomplete="off">
+          <span class="unit">평</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="cvM2">면적</label>
+        <div class="input-wrap">
+          <input type="number" inputmode="decimal" step="0.1" min="0" id="cvM2" placeholder="0" autocomplete="off">
+          <span class="unit">㎡</span>
+        </div>
+      </div>
+    </div>
+    <p class="help">어느 칸에 넣어도 다른 칸이 자동으로 바뀝니다. 아파트 면적은 전용면적 기준으로 확인하세요.</p>
+  </div>
+
+  <div class="panel" style="padding:6px;">
+    <div class="seg" role="radiogroup" aria-label="자재 종류">
+      <label><input type="radio" name="matTab" value="tile" checked><span>타일</span></label>
+      <label><input type="radio" name="matTab" value="paint"><span>페인트</span></label>
+      <label><input type="radio" name="matTab" value="paper"><span>도배지</span></label>
+    </div>
+  </div>
+
+  <!-- ================= 타일 ================= -->
+  <section id="tileSection">
+    <div class="panel">
+      <h2>타일 소요량</h2>
+      <p class="panel-sub">시공 면적과 타일 규격, 로스율로 필요한 장수와 박스 수를 계산합니다.</p>
+
+      <div class="field">
+        <label for="tileArea">시공 면적</label>
+        <div class="input-wrap" style="margin-bottom:8px;">
+          <input class="comma" type="text" inputmode="numeric" id="tileArea" value="20" autocomplete="off" style="padding-right:14px;">
+        </div>
+        <div class="seg">
+          <label><input type="radio" name="tileUnit" value="m2" checked><span>㎡</span></label>
+          <label><input type="radio" name="tileUnit" value="py"><span>평</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">타일 규격 <span class="hint">가로 × 세로</span></span>
+        <div class="chips">
+          <label><input type="radio" name="tileSize" value="300x300" checked><span>300×300</span></label>
+          <label><input type="radio" name="tileSize" value="300x600"><span>300×600</span></label>
+          <label><input type="radio" name="tileSize" value="600x600"><span>600×600</span></label>
+          <label><input type="radio" name="tileSize" value="200x200"><span>200×200</span></label>
+          <label><input type="radio" name="tileSize" value="100x300"><span>100×300</span></label>
+          <label><input type="radio" name="tileSize" value="custom"><span>직접 입력</span></label>
+        </div>
+      </div>
+
+      <div class="field-row hidden" id="tileSizeCustom">
+        <div class="field">
+          <label for="tileW">가로 (mm)</label>
+          <div class="input-wrap">
+            <input type="number" inputmode="numeric" min="10" step="10" id="tileW" value="300">
+            <span class="unit">mm</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="tileH">세로 (mm)</label>
+          <div class="input-wrap">
+            <input type="number" inputmode="numeric" min="10" step="10" id="tileH" value="300">
+            <span class="unit">mm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="tileLoss">로스율 <span class="hint">재단·파손 대비</span></label>
+        <div class="slider-row">
+          <input type="range" id="tileLoss" min="0" max="20" step="1" value="10">
+          <span class="slider-val" id="tileLossVal">10%</span>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="tilePerBox">박스당 장수</label>
+          <div class="input-wrap">
+            <input class="comma" type="text" inputmode="numeric" id="tilePerBox" value="13">
+            <span class="unit">장</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="tileBoxPrice">박스 단가 <span class="hint">선택</span></label>
+          <div class="input-wrap">
+            <input class="comma" type="text" inputmode="numeric" id="tileBoxPrice" value="0">
+            <span class="unit">원</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result" aria-live="polite" style="margin-top:16px;">
+        <div class="result-top"><h2>필요 타일</h2><span class="live-dot"><i></i>실시간</span></div>
+        <div class="big" id="oTileCount">–</div>
+        <p class="cap">로스율 반영 후 필요한 장수입니다.</p>
+        <div class="result-divider"></div>
+        <dl class="kpis">
+          <div class="kpi"><dt>구매 박스</dt><dd id="oTileBoxes">–</dd></div>
+          <div class="kpi"><dt>구매 장수</dt><dd id="oTileBought">–</dd></div>
+          <div class="kpi"><dt>필요 면적(로스 포함)</dt><dd id="oTileNeedArea">–</dd></div>
+          <div class="kpi"><dt>시공 면적</dt><dd id="oTileArea">–</dd></div>
+        </dl>
+        <div class="result-divider"></div>
+        <table class="breakdown">
+          <tbody>
+            <tr><th>타일 1장 면적</th><td id="oTileTileM2">–</td></tr>
+            <tr><th>남는 수량</th><td id="oTileSpare">–</td></tr>
+            <tr class="total"><th>예상 자재비</th><td id="oTileCost">–</td></tr>
+          </tbody>
+        </table>
+        <p class="note">시공 면적은 실제로 타일이 붙는 면적입니다. 문·창문을 뺀 순수 면적으로 넣으면 더 정확합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 페인트 ================= -->
+  <section id="paintSection" class="hidden">
+    <div class="panel">
+      <h2>페인트 소요량</h2>
+      <p class="panel-sub">도장 면적과 도장 횟수, 제품 도포율로 필요한 리터를 계산합니다.</p>
+
+      <div class="field">
+        <label for="paintArea">도장 면적</label>
+        <div class="input-wrap" style="margin-bottom:8px;">
+          <input class="comma" type="text" inputmode="numeric" id="paintArea" value="60" autocomplete="off" style="padding-right:14px;">
+        </div>
+        <div class="seg">
+          <label><input type="radio" name="paintUnit" value="m2" checked><span>㎡</span></label>
+          <label><input type="radio" name="paintUnit" value="py"><span>평</span></label>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="paintCoats">도장 횟수</label>
+          <select id="paintCoats">
+            <option value="1">1회 (덧칠 없음)</option>
+            <option value="2" selected>2회 (일반적)</option>
+            <option value="3">3회 (색상 변경·고광택)</option>
+            <option value="4">4회</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="paintCoverage">도포율 <span class="hint">㎡/L · 1회</span></label>
+          <div class="input-wrap">
+            <input type="number" inputmode="decimal" min="1" step="0.5" id="paintCoverage" value="8">
+            <span class="unit">㎡/L</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="paintLoss">추가 여유율 <span class="hint">바탕면 흡수 대비</span></label>
+        <div class="slider-row">
+          <input type="range" id="paintLoss" min="0" max="20" step="1" value="5">
+          <span class="slider-val" id="paintLossVal">5%</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="paintPrice">도료 단가 <span class="hint">선택, 1L 기준</span></label>
+        <div class="input-wrap">
+          <input class="comma" type="text" inputmode="numeric" id="paintPrice" value="0">
+          <span class="unit">원/L</span>
+        </div>
+      </div>
+
+      <div class="result" aria-live="polite" style="margin-top:16px;">
+        <div class="result-top"><h2>필요 도료량</h2><span class="live-dot"><i></i>실시간</span></div>
+        <div class="big" id="oPaintLiters">–</div>
+        <p class="cap">도장 면적 × 횟수 ÷ 도포율 (+여유율)</p>
+        <div class="result-divider"></div>
+        <dl class="kpis">
+          <div class="kpi"><dt>4L 통 기준</dt><dd id="oPaint4L">–</dd></div>
+          <div class="kpi"><dt>18L 통 기준</dt><dd id="oPaint18L">–</dd></div>
+          <div class="kpi"><dt>도장 면적</dt><dd id="oPaintArea">–</dd></div>
+          <div class="kpi"><dt>도장 횟수</dt><dd id="oPaintCoats">–</dd></div>
+        </dl>
+        <table class="breakdown" style="margin-top:12px;">
+          <tbody>
+            <tr class="total"><th>예상 도료비</th><td id="oPaintCost">–</td></tr>
+          </tbody>
+        </table>
+        <p class="note">도포율은 제품 라벨의 ㎡/L 값을 쓰세요. 바탕면이 거칠거나 흡수가 큰 벽은 10~20% 더 잡습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 도배지 ================= -->
+  <section id="paperSection" class="hidden">
+    <div class="panel">
+      <h2>도배지 소요량</h2>
+      <p class="panel-sub">벽 면적과 롤 규격으로 필요한 롤 수를 계산합니다.</p>
+
+      <div class="field">
+        <span class="field-label">벽 면적 입력 방식</span>
+        <div class="seg">
+          <label><input type="radio" name="paperMode" value="auto" checked><span>바닥면적·천장고로 추정</span></label>
+          <label><input type="radio" name="paperMode" value="manual"><span>벽 면적 직접 입력</span></label>
+        </div>
+      </div>
+
+      <div id="paperAutoFields">
+        <div class="field">
+          <label for="paperArea">바닥 면적</label>
+          <div class="input-wrap" style="margin-bottom:8px;">
+            <input class="comma" type="text" inputmode="numeric" id="paperArea" value="25" autocomplete="off" style="padding-right:14px;">
+          </div>
+          <div class="seg">
+            <label><input type="radio" name="paperUnit" value="py" checked><span>평</span></label>
+            <label><input type="radio" name="paperUnit" value="m2"><span>㎡</span></label>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="paperHeight">천장고</label>
+            <div class="input-wrap">
+              <input type="number" inputmode="decimal" min="1.8" max="6" step="0.1" id="paperHeight" value="2.4">
+              <span class="unit">m</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="paperFactor">방 구성 계수</label>
+            <div class="slider-row">
+              <input type="range" id="paperFactor" min="0.6" max="1.3" step="0.05" value="0.9">
+              <span class="slider-val" id="paperFactorVal">0.90</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label style="display:flex; gap:8px; align-items:center; font-weight:600;">
+            <input type="checkbox" id="paperCeiling" style="width:18px;height:18px;">
+            천장까지 도배 (천장 면적 추가)
+          </label>
+        </div>
+        <p class="help">추정 벽 면적 = 바닥 면적 × 천장고 × 방 구성 계수(기본 0.9). 방이 많고 잘게 나뉠수록 계수를 높이세요. 정확한 수량은 실측을 권합니다.</p>
+      </div>
+
+      <div id="paperManualFields" class="hidden">
+        <div class="field">
+          <label for="paperWall">벽 면적</label>
+          <div class="input-wrap">
+            <input class="comma" type="text" inputmode="numeric" id="paperWall" value="0">
+            <span class="unit">㎡</span>
+          </div>
+          <p class="help">문·창문을 뺀 실제 도배 면적을 넣으세요. 실측이 가장 정확합니다.</p>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="paperType">벽지 종류</label>
+          <select id="paperType">
+            <option value="silk" selected>실크벽지 (16.5㎡/롤)</option>
+            <option value="habji">합지벽지 (12.5㎡/롤)</option>
+            <option value="custom">직접 입력</option>
+          </select>
+        </div>
+        <div class="field hidden" id="paperRollCustom">
+          <label for="paperRollM2">롤당 면적</label>
+          <div class="input-wrap">
+            <input type="number" inputmode="decimal" min="1" step="0.1" id="paperRollM2" value="16.5">
+            <span class="unit">㎡</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="paperPrice">롤 단가 <span class="hint">선택</span></label>
+          <div class="input-wrap">
+            <input class="comma" type="text" inputmode="numeric" id="paperPrice" value="0">
+            <span class="unit">원</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="paperLoss">로스율 <span class="hint">이음·재단 손실</span></label>
+        <div class="slider-row">
+          <input type="range" id="paperLoss" min="0" max="25" step="1" value="10">
+          <span class="slider-val" id="paperLossVal">10%</span>
+        </div>
+      </div>
+
+      <div class="result" aria-live="polite" style="margin-top:16px;">
+        <div class="result-top"><h2>필요 도배지</h2><span class="live-dot"><i></i>실시간</span></div>
+        <div class="big" id="oPaperRolls">–</div>
+        <p class="cap">벽 면적 × (1 + 로스율) ÷ 롤당 면적, 올림</p>
+        <div class="result-divider"></div>
+        <dl class="kpis">
+          <div class="kpi"><dt>도배 면적(로스 포함)</dt><dd id="oPaperNeedArea">–</dd></div>
+          <div class="kpi"><dt>벽 면적</dt><dd id="oPaperWall">–</dd></div>
+          <div class="kpi"><dt>롤당 면적</dt><dd id="oPaperRollM2">–</dd></div>
+          <div class="kpi"><dt>예상 자재비</dt><dd id="oPaperCost">–</dd></div>
+        </dl>
+        <p class="note">실크벽지는 바탕지(합지)를 먼저 바르는 경우가 많습니다. 바탕지 수량은 같은 면적으로 합지 기준(12.5㎡/롤)으로 한 번 더 계산하세요.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <details class="acc" open>
+      <summary>계산 공식</summary>
+      <div class="acc-body">
+        <div class="formula"><code>[면적 변환]
+1평 = 3.305785㎡      1㎡ = 0.3025평
+
+[타일]
+필요 면적 = 시공 면적 × (1 + 로스율)
+필요 장수 = 필요 면적 ÷ (가로m × 세로m)   → 올림
+박스 수 = 필요 장수 ÷ 박스당 장수        → 올림
+
+[페인트]
+필요량(L) = 도장 면적 × 도장 횟수 ÷ 도포율(㎡/L) × (1 + 여유율)
+
+[도배지]
+벽 면적(추정) = 바닥 면적 × 천장고 × 방 구성 계수 (+ 천장 면적)
+롤 수 = 벽 면적 × (1 + 로스율) ÷ 롤당 면적  → 올림</code></div>
+        <p class="note">모든 수량은 ‘모자라지 않게’ 올림합니다. 자재는 남는 것이 부족한 것보다 낫지만, 과도한 여유는 비용이므로 로스율을 현장에 맞게 조정하세요.</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>현장에서 유용한 팁</summary>
+      <div class="acc-body">
+        <ul class="tick">
+          <li><strong>타일은 같은 로트(생산 번호)로</strong> 구매하세요. 색상 차이가 나면 나중에 채울 수 없습니다. 계산한 박스에 1박스 정도 여유를 두면 보수 공사에 쓸 수 있습니다.</li>
+          <li><strong>소형 타일·대각 시공은 로스가 큽니다.</strong> 100×100 타일이나 45도 대각 시공은 로스율을 15%까지 잡으세요.</li>
+          <li><strong>페인트는 희석 배율을 확인하세요.</strong> 도포율은 희석 후 기준인 경우가 많습니다. 1회 도포 후 건조 시간을 지켜야 2회차 도포율이 유지됩니다.</li>
+          <li><strong>도배 면적에서 문·창문은 빼되</strong> 문틀 주변 재단 여유는 남겨야 합니다. 창호가 많은 벽은 로스가 더 생깁니다.</li>
+          <li><strong>평수는 전용면적으로</strong> 확인하세요. 공급면적·계약면적과 혼동하면 자재가 크게 남거나 모자랍니다.</li>
+        </ul>
+      </div>
+    </details>
+
+    <h2 style="margin:30px 0 10px;">자주 묻는 질문</h2>
+    <div class="soft-card faq" style="padding:6px 20px;">
+      <div class="faq-item">
+        <h3>타일 박스당 장수는 어떻게 알 수 있나요?</h3>
+        <p>제품 박스에 표시된 장수를 확인해 넣으세요. 300×300 타일은 보통 13~15장, 600×600은 3~4장이 한 박스입니다. 계산기에서 규격을 고르면 대표적인 값이 자동 입력됩니다.</p>
+      </div>
+      <div class="faq-item">
+        <h3>도배지 롤 수가 실제와 다르게 나옵니다.</h3>
+        <p>벽 면적 추정 방식 때문입니다. 방 구성이 복잡하면 ‘벽 면적 직접 입력’으로 바꿔 실측값을 넣는 것이 가장 정확합니다. 로스율도 10~15% 사이에서 조정해 보세요.</p>
+      </div>
+      <div class="faq-item">
+        <h3>페인트 1L로 몇 평을 칠할 수 있나요?</h3>
+        <p>도포율 8㎡/L 기준으로 1L는 약 2.4평을 1회 칠할 수 있습니다. 2회 도장이면 절반인 1.2평 정도입니다. 실제로는 바탕면 상태에 따라 달라집니다.</p>
+      </div>
+      <div class="faq-item">
+        <h3>25평 아파트 도배지는 몇 롤 필요한가요?</h3>
+        <p>25평(약 82.6㎡)에 천장고 2.4m, 계수 0.9를 적용하면 벽 면적이 약 178㎡입니다. 로스 10%를 더하면 196㎡로, 실크벽지 16.5㎡/롤 기준 약 12롤입니다. 방 구성에 따라 차이가 있으니 실측을 권합니다.</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:26px;">
+      <a class="soft-card" href="margin.html" style="text-decoration:none;">
+        <h3>마진·수수료 계산기 →</h3>
+        <p>자재비와 판매가로 실제 남는 이익을 확인하세요.</p>
+      </a>
+      <a class="soft-card" href="tax.html" style="text-decoration:none;">
+        <h3>부가세·원천세 계산기 →</h3>
+        <p>자재 매입세액과 부가세 납부세액을 계산해 보세요.</p>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 7h8M8 11.5h.01M12 11.5h.01M16 11.5h.01M8 15.5h.01M12 15.5h.01M16 15.5v3"/></svg>
+        </span>
+        <strong>스마트비즈 계산기</strong>
+      </div>
+      <p class="footer-about">사장님과 실무자가 매일 쓰는 계산기를 모았습니다. 셀러 마진, 부가세·원천세, 건축자재 소요량을 회원가입 없이 무료로 계산하세요.</p>
+    </div>
+    <div>
+      <nav class="footer-links" aria-label="바닥글 메뉴">
+        <a href="margin.html">마진 계산기</a>
+        <a href="tax.html">부가세 계산기</a>
+        <a href="material.html">자재 계산기</a>
+        <a href="about.html">사이트 소개</a>
+        <a href="privacy.html">개인정보처리방침</a>
+      </nav>
+    </div>
+  </div>
+  <div class="wrap footer-legal">
+    <p>계산 결과는 참고용 추정치이며, 실제 정산·세액과 차이가 있을 수 있습니다. 세무·회계 신고는 전문가 확인을 권장합니다.</p>
+    <p>© 2026 스마트비즈 계산기. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/js/common.js"></script>
+<script src="assets/js/material.js"></script>
+</body>
+</html>

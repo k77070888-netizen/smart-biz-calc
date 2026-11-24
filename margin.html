@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>온라인 셀러 마진·수수료 계산기 (스마트스토어·쿠팡) | 스마트비즈 계산기</title>
+<meta name="description" content="판매가·매입원가·수수료·배송비·부가세를 넣으면 예상 정산액, 순이익, 마진율, ROI, 손익분기 판매가를 바로 계산합니다. 스마트스토어·쿠팡·11번가·G마켓 수수료 프리셋 제공.">
+<meta name="theme-color" content="#2557d6">
+<link rel="canonical" href="https://k77070888-netizen.github.io/smart-biz-calc/margin.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="스마트비즈 계산기">
+<meta property="og:title" content="온라인 셀러 마진·수수료 계산기">
+<meta property="og:description" content="수수료·배송비·부가세까지 반영한 진짜 순이익과 손익분기 판매가를 계산하세요.">
+<meta property="og:url" content="https://k77070888-netizen.github.io/smart-biz-calc/margin.html">
+<meta property="og:image" content="https://k77070888-netizen.github.io/smart-biz-calc/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "온라인 셀러 마진·수수료 계산기",
+  "url": "https://k77070888-netizen.github.io/smart-biz-calc/margin.html",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ko-KR",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+  "description": "판매가, 매입원가, 마켓 수수료, 배송비, 부가세를 반영해 순이익·마진율·ROI·손익분기 판매가를 계산하는 무료 도구"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "스마트스토어 수수료율은 몇 %로 넣어야 하나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "판매자센터의 정산 내역에서 실제 적용 요율을 확인해 그 값을 넣는 것이 가장 정확합니다. 카테고리와 계약 조건에 따라 다르며, 이 계산기의 기본값은 참고용입니다." }
+    },
+    {
+      "@type": "Question",
+      "name": "무료배송일 때 배송비는 어떻게 계산되나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "무료배송을 선택하면 실제 택배비가 판매자 비용으로 빠집니다. 고객부담을 선택하면 고객이 낸 배송비로 택배비를 충당하는 것으로 보고 손익에서 상계합니다." }
+    },
+    {
+      "@type": "Question",
+      "name": "마진율과 ROI는 무엇이 다른가요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "마진율은 매출 대비 남은 이익의 비율이고, ROI(투자수익률)는 매입원가·배송비·포장비 등 투입한 돈 대비 이익의 비율입니다. 같은 상품이라도 마진율은 매출 기준, ROI는 투자 기준으로 봅니다." }
+    },
+    {
+      "@type": "Question",
+      "name": "부가세를 포함해서 계산해야 하나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "판매가는 고객이 결제하는 부가세 포함 금액으로 넣으시면 됩니다. 일반과세자는 계산기가 부가세를 제외한 실질 손익으로 환산해 보여주고, 간이과세자는 업종별 부가가치율로 납부세액을 추정합니다." }
+    },
+    {
+      "@type": "Question",
+      "name": "손익분기 판매가는 어떻게 쓰나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "이 가격 아래로 팔면 손해가 나는 최저 가격입니다. 할인 행사나 쿠폰을 적용할 때 마지노선으로 삼고, 그 위에서 목표 마진을 확보하는 가격을 정하면 됩니다." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 7h8M8 11.5h.01M12 11.5h.01M16 11.5h.01M8 15.5h.01M12 15.5h.01M16 15.5v3"/></svg>
+      </span>
+      <span class="brand-text"><strong>스마트비즈 계산기</strong><small>사장님 실무 도구</small></span>
+    </a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="margin.html" aria-current="page">마진·수수료</a>
+      <a href="tax.html">부가세·원천세</a>
+      <a href="material.html">자재 소요량</a>
+      <a href="about.html">소개</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div class="crumbs"><a href="index.html">홈</a><span>›</span>마진·수수료 계산기</div>
+    <h1>온라인 셀러 마진·수수료 계산기</h1>
+    <p>판매가와 원가, 마켓 수수료, 배송비, 부가세를 한 번에 넣고 <strong>실제로 남는 돈</strong>을 확인하세요. 숫자를 바꾸는 즉시 결과가 다시 계산됩니다.</p>
+  </div>
+
+  <div class="calc-layout">
+    <form id="marginForm" class="calc-main" novalidate>
+      <div class="panel">
+        <h2><span class="num">1</span>마켓과 수수료</h2>
+        <div class="field">
+          <span class="field-label">판매 마켓 <span class="hint">선택하면 참고 요율이 자동 입력됩니다</span></span>
+          <div class="chips">
+            <label><input type="radio" name="market" value="smartstore" checked><span>네이버 스마트스토어</span></label>
+            <label><input type="radio" name="market" value="coupang"><span>쿠팡</span></label>
+            <label><input type="radio" name="market" value="eleven"><span>11번가</span></label>
+            <label><input type="radio" name="market" value="gmarket"><span>G마켓</span></label>
+            <label><input type="radio" name="market" value="custom"><span>직접 입력</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="feeRate">판매 수수료율</label>
+          <div class="input-wrap">
+            <input type="text" inputmode="decimal" id="feeRate" value="3.63" autocomplete="off">
+            <span class="unit">%</span>
+          </div>
+          <p class="help" id="feeNote">스마트스토어 기준 3.63%가 적용되었습니다.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2><span class="num">2</span>판매 정보</h2>
+        <div class="field">
+          <label for="price">판매가 <span class="hint">고객 결제 금액(부가세 포함)</span></label>
+          <div class="input-wrap">
+            <input class="comma" type="text" inputmode="numeric" id="price" value="29,900" autocomplete="off">
+            <span class="unit">원</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="cost">매입원가 <span class="hint">상품 1개당</span></label>
+          <div class="input-wrap">
+            <input class="comma" type="text" inputmode="numeric" id="cost" value="12,000" autocomplete="off">
+            <span class="unit">원</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-label">배송비</span>
+          <div class="seg">
+            <label><input type="radio" name="shipMode" value="free" checked><span>무료배송 (판매자 부담)</span></label>
+            <label><input type="radio" name="shipMode" value="customer"><span>고객 부담</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="shipCost" id="shipCostLabel">실택배비 (판매자 부담)</label>
+          <div class="input-wrap">
+            <input class="comma" type="text" inputmode="numeric" id="shipCost" value="3,000" autocomplete="off">
+            <span class="unit">원</span>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="pack">포장비</label>
+            <div class="input-wrap">
+              <input class="comma" type="text" inputmode="numeric" id="pack" value="500" autocomplete="off">
+              <span class="unit">원</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ad">광고비</label>
+            <div class="input-wrap">
+              <input class="comma" type="text" inputmode="numeric" id="ad" value="0" autocomplete="off">
+              <span class="unit">원</span>
+            </div>
+          </div>
+        </div>
+        <p class="help">포장비·광고비는 1개 판매당 들어가는 비용으로 넣으세요. 광고비는 월 광고비 ÷ 월 판매량으로 계산하면 좋습니다.</p>
+      </div>
+
+      <div class="panel">
+        <h2><span class="num">3</span>세금과 목표</h2>
+        <div class="field">
+          <span class="field-label">사업자 유형</span>
+          <div class="seg">
+            <label><input type="radio" name="taxType" value="taxed" checked><span>일반과세</span></label>
+            <label><input type="radio" name="taxType" value="simple"><span>간이과세</span></label>
+            <label><input type="radio" name="taxType" value="exempt"><span>면세</span></label>
+          </div>
+        </div>
+        <div class="field hidden" id="simpleRow">
+          <label for="valueRate">간이과세 업종별 부가가치율</label>
+          <select id="valueRate">
+            <option value="15" selected>소매업 · 음식점업 (15%)</option>
+            <option value="20">제조업 · 숙박업 · 농림어업 (20%)</option>
+            <option value="30">건설업 · 사업서비스업 (30%)</option>
+            <option value="40">부동산임대업 · 기타 서비스업 (40%)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="targetMargin">목표 마진율 <span class="hint">권장 판매가 계산용</span></label>
+          <div class="input-wrap">
+            <input class="comma" type="text" inputmode="numeric" id="targetMargin" value="20" autocomplete="off">
+            <span class="unit">%</span>
+          </div>
+        </div>
+        <p class="help">일반과세는 부가세를 제외한 공급가액 기준으로, 간이과세는 부가가치율만큼의 납부세액을 비용으로 반영합니다.</p>
+      </div>
+    </form>
+
+    <aside class="calc-side">
+      <div class="result" aria-live="polite">
+        <div class="result-top">
+          <h2>예상 순이익</h2>
+          <span class="live-dot"><i></i>실시간</span>
+        </div>
+        <div class="big" id="outProfit">–</div>
+        <p class="cap" id="outCaption">부가세 제외 실질 손익 기준</p>
+
+        <div class="result-divider"></div>
+        <dl class="kpis">
+          <div class="kpi"><dt>예상 정산액</dt><dd id="outSettlement">–</dd></div>
+          <div class="kpi"><dt>마진율</dt><dd id="outMargin">–</dd></div>
+          <div class="kpi"><dt>투자수익률(ROI)</dt><dd id="outRoi">–</dd></div>
+          <div class="kpi"><dt>손익분기 판매가</dt><dd id="outBep">–</dd></div>
+        </dl>
+
+        <div class="result-divider"></div>
+        <table class="breakdown">
+          <caption>계산 내역</caption>
+          <tbody>
+            <tr><th>판매가</th><td id="bdPrice">–</td></tr>
+            <tr><th>− 판매 수수료</th><td id="bdFee" class="neg">–</td></tr>
+            <tr><th>− 배송비(판매자 부담)</th><td id="bdShip" class="neg">–</td></tr>
+            <tr><th>= 예상 정산액</th><td id="bdSettlement">–</td></tr>
+            <tr><th>− 매입원가</th><td id="bdCost" class="neg">–</td></tr>
+            <tr><th>− 포장비</th><td id="bdPack" class="neg">–</td></tr>
+            <tr><th>− 광고비</th><td id="bdAd" class="neg">–</td></tr>
+            <tr id="bdVatRow" class="hidden"><th>− 부가세(간이)</th><td id="bdVat" class="neg">–</td></tr>
+            <tr class="total"><th>= 순이익</th><td id="bdProfit">–</td></tr>
+          </tbody>
+        </table>
+        <p class="note" id="outTargetNote">목표 마진 <strong id="outTargetMarginLabel">20%</strong>를 채우려면 <strong id="outTargetPrice">–</strong> 이상에 팔아야 합니다.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="section">
+    <details class="acc" open>
+      <summary>계산 공식과 기준</summary>
+      <div class="acc-body">
+        <div class="formula"><code>예상 정산액 = 판매가 − (판매가 × 수수료율) − 배송비(판매자 부담)
+순이익 = 매출(공급가액) − 매입원가 − 수수료 − 배송비 − 포장비 − 광고비 − 부가세
+마진율 = 순이익 ÷ 매출(공급가액) × 100
+ROI = 순이익 ÷ 투입비용(원가+배송+포장+광고) × 100
+손익분기 판매가 = 순이익이 0이 되는 판매가</code></div>
+        <ul>
+          <li><strong>매출(공급가액)</strong>은 일반과세자의 경우 판매가 ÷ 1.1입니다. 부가세는 고객이 낸 돈을 잠시 맡아 두는 것이므로 이익으로 보지 않습니다.</li>
+          <li><strong>매입원가</strong>도 부가세 포함 금액을 넣으면 ÷ 1.1로 환산해 매입세액 공제를 반영합니다.</li>
+          <li><strong>수수료</strong>는 마켓이 부가세를 포함해 떼 가는 금액으로 보고 판매가 × 수수료율로 계산합니다(공급가액 기준 수수료 + 부가세와 같은 결과).</li>
+          <li><strong>간이과세</strong>는 공급대가 × 부가가치율 × 10%를 납부세액으로 보고 비용에 넣었습니다. 매입세액 공제는 반영하지 않아 실제보다 조금 높게 나올 수 있습니다.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>마켓별 수수료 참고 요율</summary>
+      <div class="acc-body">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>마켓</th><th>기본값</th><th>확인 방법</th></tr></thead>
+            <tbody>
+              <tr><td>네이버 스마트스토어</td><td class="num">3.63%</td><td>스마트스토어센터 → 정산 내역의 실제 요율</td></tr>
+              <tr><td>쿠팡</td><td class="num">10.8%</td><td>윙(WING) → 판매수수료 카테고리별 요율</td></tr>
+              <tr><td>11번가</td><td class="num">9.0%</td><td>셀러센터 → 수수료 안내</td></tr>
+              <tr><td>G마켓 · 옥션</td><td class="num">8.0%</td><td>ESM 셀러센터 → 카테고리 수수료</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">위 값은 카테고리별로 널리 쓰이는 대략적인 참고값입니다. 마켓은 카테고리·판매자 등급·프로모션에 따라 다른 요율을 적용하므로, <strong>실제 계약 요율로 반드시 바꿔 넣어 주세요.</strong> 계산기는 입력한 요율만 사용합니다.</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>마진을 지키는 실무 팁</summary>
+      <div class="acc-body">
+        <ul class="tick">
+          <li><strong>무료배송은 공짜가 아닙니다.</strong> 택배비 3,000원은 판매가에서 그대로 빠집니다. 무료배송 상품은 배송비를 판매가에 미리 얹어 두고 마진을 계산하세요.</li>
+          <li><strong>반품·교환 비용을 따로 보세요.</strong> 반품률이 5%라면 왕복 택배비가 그만큼 발생합니다. 반품률 × 왕복 배송비를 광고비 칸에 더해 두면 보수적으로 잡힙니다.</li>
+          <li><strong>광고비는 ‘건당’으로 환산하세요.</strong> 월 광고비 50만원에 100건을 팔았다면 건당 5,000원입니다. 클릭만 늘고 구매가 없으면 마진이 사라집니다.</li>
+          <li><strong>손익분기 판매가는 할인 마지노선입니다.</strong> 쿠폰·행사 할인을 적용하기 전에 이 가격을 확인하고, 그 아래로는 내려가지 않는 규칙을 만드세요.</li>
+          <li><strong>수수료율을 분기마다 확인하세요.</strong> 카테고리 변경이나 등급 조정으로 요율이 달라지면 마진 구조가 바뀝니다.</li>
+        </ul>
+      </div>
+    </details>
+
+    <h2 class="section" style="margin-bottom:10px;">자주 묻는 질문</h2>
+    <div class="soft-card faq" style="padding:6px 20px;">
+      <div class="faq-item">
+        <h3>정산액과 순이익은 무엇이 다른가요?</h3>
+        <p>정산액은 마켓이 수수료와 배송비를 떼고 판매자에게 입금하는 금액입니다. 순이익은 여기서 매입원가·포장비·광고비·부가세까지 모두 빼고 남은 돈입니다. 통장에 들어온 돈이 곧 이익은 아닙니다.</p>
+      </div>
+      <div class="faq-item">
+        <h3>마진율은 몇 %가 적당한가요?</h3>
+        <p>업종마다 다르지만 온라인 소매는 보통 15~30%를 목표로 잡습니다. 반품·광고비 비중이 큰 카테고리는 30% 이상을 권합니다. 이 계산기에서는 목표 마진율을 넣어 필요한 판매가를 역산할 수 있습니다.</p>
+      </div>
+      <div class="faq-item">
+        <h3>간이과세자인데 부가세를 어떻게 넣나요?</h3>
+        <p>사업자 유형에서 ‘간이과세’를 선택하고 업종을 고르면 됩니다. 판매가는 그대로 넣으세요. 계산기가 공급대가 × 부가가치율 × 10%를 납부세액으로 추정해 비용에 반영합니다.</p>
+      </div>
+      <div class="faq-item">
+        <h3>여러 상품을 한 번에 계산할 수 있나요?</h3>
+        <p>한 번에 한 상품씩 계산합니다. 상품별로 판매가와 원가를 바꿔 가며 비교해 보세요. 입력값은 저장되지 않으므로 계산이 끝나면 필요한 숫자를 따로 적어 두시는 것이 좋습니다.</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:26px;">
+      <a class="soft-card" href="tax.html" style="text-decoration:none;">
+        <h3>다음: 부가세·원천세 계산기 →</h3>
+        <p>매출·매입으로 예상 납부세액을 확인하고, 3.3% 원천징수 실수령액도 계산해 보세요.</p>
+      </a>
+      <a class="soft-card" href="material.html" style="text-decoration:none;">
+        <h3>다음: 자재 소요량 계산기 →</h3>
+        <p>타일·페인트·도배지 수량을 로스율까지 반영해 계산합니다.</p>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 7h8M8 11.5h.01M12 11.5h.01M16 11.5h.01M8 15.5h.01M12 15.5h.01M16 15.5v3"/></svg>
+        </span>
+        <strong>스마트비즈 계산기</strong>
+      </div>
+      <p class="footer-about">사장님과 실무자가 매일 쓰는 계산기를 모았습니다. 셀러 마진, 부가세·원천세, 건축자재 소요량을 회원가입 없이 무료로 계산하세요.</p>
+    </div>
+    <div>
+      <nav class="footer-links" aria-label="바닥글 메뉴">
+        <a href="margin.html">마진 계산기</a>
+        <a href="tax.html">부가세 계산기</a>
+        <a href="material.html">자재 계산기</a>
+        <a href="about.html">사이트 소개</a>
+        <a href="privacy.html">개인정보처리방침</a>
+      </nav>
+    </div>
+  </div>
+  <div class="wrap footer-legal">
+    <p>계산 결과는 참고용 추정치이며, 실제 정산·세액과 차이가 있을 수 있습니다. 세무·회계 신고는 전문가 확인을 권장합니다.</p>
+    <p>© 2026 스마트비즈 계산기. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/js/common.js"></script>
+<script src="assets/js/margin.js"></script>
+</body>
+</html>

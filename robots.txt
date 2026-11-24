@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://k77070888-netizen.github.io/smart-biz-calc/sitemap.xml
