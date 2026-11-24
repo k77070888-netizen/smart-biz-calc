@@ -120,8 +120,7 @@
       SBC.setText($('oSimpleBase'), SBC.won(r.base));
       SBC.setText($('oSimpleTax'), SBC.won(r.tax));
       SBC.setText($('oSimplePayable'), SBC.won(r.payable));
-      SBC.setText($('oSimpleCaption'), '공급대가 × 부가가치율 ' + rate + '% × 10%' +
-        (r.credit > 0 ? ' − 매입세액 공제' : '') + ' (매입세액 공제 미반영 시 실제와 차이가 날 수 있습니다)');
+      SBC.setText($('oSimpleCaption'), '공급대가 × 부가가치율 ' + rate + '% × 10% − 매입세액 공제');
     }
 
     function renderWh() {

@@ -154,7 +154,6 @@ a.card:hover {
   .calc-layout { grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: 22px; align-items: start; }
   .calc-side { position: sticky; top: 82px; }
 }
-
 .panel {
   background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 20px; box-shadow: var(--shadow); margin-bottom: 18px;
@@ -292,7 +291,7 @@ details.acc .acc-body { padding: 0 18px 16px; font-size: .92rem; }
 details.acc .acc-body > *:last-child { margin-bottom: 0; }
 
 /* ---------- 본문 콘텐츠 섹션 ---------- */
-.section { margin: 34px 0; }
+.section { margin-top: 34px; margin-bottom: 34px; }
 .section > h2 { margin-bottom: 12px; }
 .prose { font-size: .96rem; }
 .prose h3 { margin: 22px 0 8px; font-size: 1rem; }
@@ -322,6 +321,10 @@ details.acc .acc-body > *:last-child { margin-bottom: 0; }
 .soft-card p:last-child, .soft-card ul:last-child { margin-bottom: 0; }
 
 .tabs-note { display: flex; gap: 8px; align-items: flex-start; font-size: .85rem; color: var(--muted); margin: 10px 0 0; }
+
+/* 좁은 단일 열 레이아웃 (폼 중심 페이지) */
+main.narrow { max-width: 880px; }
+.seg-tabs { max-width: 520px; }
 
 /* ---------- 푸터 ---------- */
 .site-footer { margin-top: 56px; background: #fff; border-top: 1px solid var(--line); padding: 30px 0 34px; }

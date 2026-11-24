@@ -82,6 +82,7 @@
       feeRate: m.feeRate,
       feeGross: feeGross,
       feeNet: feeNet,
+      vatOut: taxed ? m.price - salesNet : 0,
       shipPaid: shipPaid,
       shipNet: shipNet,
       settlement: settlement,
@@ -127,7 +128,6 @@
       bdPrice: $('bdPrice'),
       bdFee: $('bdFee'),
       bdShip: $('bdShip'),
-      bdSettlement: $('bdSettlement'),
       bdCost: $('bdCost'),
       bdPack: $('bdPack'),
       bdAd: $('bdAd'),
@@ -187,12 +187,17 @@
       if (out.caption) out.caption.textContent = captions.join(' · ');
 
       SBC.setText(out.bdPrice, SBC.won(r.price));
-      SBC.setText(out.bdFee, '−' + SBC.won(r.feeGross));
-      SBC.setText(out.bdShip, '−' + SBC.won(r.shipPaid));
-      SBC.setText(out.bdSettlement, SBC.won(r.settlement));
-      SBC.setText(out.bdCost, '−' + SBC.won(SBC.val($('cost'))));
-      SBC.setText(out.bdPack, '−' + SBC.won(SBC.val($('pack'))));
-      SBC.setText(out.bdAd, '−' + SBC.won(SBC.val($('ad'))));
+      SBC.setText($('bdVatOut'), '−' + SBC.won(r.vatOut));
+      SBC.setText($('bdSalesNet'), SBC.won(r.salesNet));
+      SBC.setText(out.bdFee, '−' + SBC.won(r.feeNet));
+      SBC.setText(out.bdShip, r.shipNet > 0 ? '−' + SBC.won(r.shipNet) : '0원');
+      SBC.setText(out.bdCost, r.costNet > 0 ? '−' + SBC.won(r.costNet) : '0원');
+      SBC.setText(out.bdPack, r.packNet > 0 ? '−' + SBC.won(r.packNet) : '0원');
+      SBC.setText(out.bdAd, r.adNet > 0 ? '−' + SBC.won(r.adNet) : '0원');
+      if ($('bdVatOutRow')) $('bdVatOutRow').classList.toggle('hidden', r.taxType !== 'taxed');
+      if ($('outSettleNote')) {
+        $('outSettleNote').textContent = '마켓이 입금하는 금액(부가세 포함)은 ' + SBC.won(r.settlement) + '입니다.';
+      }
 
       if (r.taxType === 'simple') {
         out.bdVatRow.classList.remove('hidden');
