@@ -355,3 +355,16 @@ main.narrow { max-width: 880px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* 아주 좁은 화면: 세그먼트 글자가 넘치지 않도록 */
+@media (max-width: 480px) {
+  body { font-size: 15.5px; }
+  .seg span { white-space: normal; font-size: .78rem; line-height: 1.3; padding: 8px 4px; }
+  .panel { padding: 16px; }
+  .result { padding: 16px; }
+  .nav a { font-size: 13px; padding: 7px 9px; }
+  .brand-text small { display: none; }
+  .breakdown { font-size: .84rem; }
+  .big { font-size: 1.75rem; }
+  .kpis { gap: 10px; }
+}
