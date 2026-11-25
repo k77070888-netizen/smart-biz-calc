@@ -5,11 +5,12 @@
     python3 test/affiliate-check.py
 
 확인 항목
-1. 링크가 비어 있을 때: 카드가 div(링크 없음)로 4개 그려지고 '준비 중' 상태
-2. 링크를 채웠을 때: a 태그 + href + rel="nofollow sponsored noopener", 수수료 고지 표시
+1. 링크가 비어 있을 때: 카드가 div(링크 없음)로 4개씩 그려지고 '준비 중' 상태
+2. 링크가 채워진 현재 설정: 8개 카드 모두 a 태그 + link.coupang.com href + rel="nofollow sponsored noopener", 수수료 고지(필수 문구) 표시
 3. 템플릿 구매 버튼: 링크 없으면 비활성 span, 있으면 a 태그
 """
 import os
+import re
 import sys
 
 import quickjs
@@ -85,8 +86,9 @@ def check(cond, label):
         fails.append(label)
 
 
-# 1) 링크 없음 상태
-ctx = run(SRC)
+# 1) 링크 없음 상태 (실제 설정에서 제휴 링크만 비운 사본)
+EMPTY_SRC = re.sub(r'url: "https://link\.coupang\.com/a/[^"]*"', 'url: ""', SRC)
+ctx = run(EMPTY_SRC)
 check(ctx.eval("nodes.group[0].children.length") == 4, "마진 그룹 카드 4개")
 check(ctx.eval("nodes.group[1].children.length") == 4, "자재 그룹 카드 4개")
 check(ctx.eval("nodes.group[0].children[0].tagName") == "DIV", "준비 중 카드는 링크가 아닌 div")
@@ -97,16 +99,23 @@ check("준비 중" in ctx.eval("nodes.note[0].textContent"), "안내 문구 표�
 check(ctx.eval("nodes.tpl[0].innerHTML").find("btn-disabled") >= 0, "템플릿 구매 버튼 비활성")
 check(ctx.eval("nodes.price[0].textContent") == "16,900원", "세트 예정가 표시")
 
-# 2) 링크를 채운 상태 (첫 상품 + 템플릿 링크)
-live_src = SRC.replace('url: ""', 'url: "https://link.coupang.com/a/test"', 1)
-live_src = live_src.replace('marginBook: { price: "9,900원", url: "" }',
-                            'marginBook: { price: "9,900원", url: "https://smartstore.naver.com/snbjeju/products/1" }')
+# 2) 링크를 채운 상태 (현재 배포 설정 그대로)
+ctx = run(SRC)
+for gi in (0, 1):
+    check(ctx.eval("nodes.group[%d].children.length" % gi) == 4, "링크 연결 후 카드 4개")
+    for i in range(4):
+        check(ctx.eval('nodes.group[%d].children[%d].tagName' % (gi, i)) == "A", "링크가 있으면 a 태그")
+        check(ctx.eval('nodes.group[%d].children[%d].href' % (gi, i)).startswith("https://link.coupang.com/a/"), "href 연결")
+        check("sponsored" in ctx.eval('nodes.group[%d].children[%d].rel' % (gi, i)), "rel=sponsored")
+note = ctx.eval("nodes.note[0].textContent")
+check("쿠팡 파트너스" in note, "수수료 고지 표시")
+check("이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다." in note, "필수 대가지급 문구")
+check(ctx.eval("nodes.tpl[0].innerHTML").find("btn-disabled") >= 0, "템플릿 링크가 없으면 비활성")
+
+# 3) 템플릿 링크를 채운 상태
+live_src = SRC.replace('marginBook: { price: "9,900원", url: "" }',
+                       'marginBook: { price: "9,900원", url: "https://smartstore.naver.com/snbjeju/products/1" }')
 ctx = run(live_src)
-check(ctx.eval("nodes.group[0].children[0].tagName") == "A", "링크가 있으면 a 태그")
-check(ctx.eval("nodes.group[0].children[0].href") == "https://link.coupang.com/a/test", "href 연결")
-check("sponsored" in ctx.eval("nodes.group[0].children[0].rel"), "rel=sponsored")
-check("쿠팡 파트너스" in ctx.eval("nodes.note[0].textContent"), "수수료 고지 표시")
-check(ctx.eval("nodes.group[0].children[1].tagName") == "DIV", "링크 없는 카드는 그대로 준비 중")
 check(ctx.eval("nodes.tpl[0].innerHTML").find("스마트스토어에서 구매") >= 0, "템플릿 구매 버튼 활성")
 
 if fails:

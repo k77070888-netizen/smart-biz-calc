@@ -8,11 +8,11 @@
    ▶ 쿠팡 파트너스는 '상품별 바로가기 링크'를 그대로 넣으세요.
    ========================================================================== */
 window.SBC_AFFILIATE = {
-  version: "2026-11-24",
+  version: "2026-11-25",
 
   /* 실제 링크가 하나라도 연결되면 카드 아래에 자동으로 표시됩니다. */
   disclosure:
-    "이 영역의 상품 링크는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다. 가격과 재고는 판매처 기준입니다.",
+    "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 가격과 재고는 판매처 기준입니다.",
 
   groups: {
     /* 마진·수수료 계산기 하단 — 셀러 포장·발송 부자재 */
@@ -23,25 +23,25 @@ window.SBC_AFFILIATE = {
           name: "택배박스 3~6호",
           desc: "상품 크기별로 3~4종을 섞어 두면 포장이 빨라집니다.",
           emoji: "📦",
-          url: ""
+          url: "https://link.coupang.com/a/iXtDjz4mQ0"
         },
         {
           name: "OPP 테이프 45mm",
           desc: "박스 봉인용 투명 테이프. 50m 두세 개면 한 달은 갑니다.",
           emoji: "🎗️",
-          url: ""
+          url: "https://link.coupang.com/a/iXtFSrb17A"
         },
         {
           name: "에어캡(뽁뽁이) 30cm",
           desc: "깨지기 쉬운 상품에 필수. 좁은 폭이 감기 편합니다.",
           emoji: "🫧",
-          url: ""
+          url: "https://link.coupang.com/a/iXtHoedn4u"
         },
         {
           name: "포장 감사 스티커",
           desc: "주문 마감에 한 장 붙이면 리뷰율이 올라갑니다.",
           emoji: "🏷️",
-          url: ""
+          url: "https://link.coupang.com/a/iXtI7Zf2A0"
         }
       ]
     },
@@ -54,25 +54,25 @@ window.SBC_AFFILIATE = {
           name: "타일 스페이서 2·3mm",
           desc: "줄눈 폭을 일정하게. 100개입 한 봉이면 3~4㎡ 분입니다.",
           emoji: "🧱",
-          url: ""
+          url: "https://link.coupang.com/a/iXtKKo6YHQ"
         },
         {
           name: "줄눈제 5kg",
           desc: "타일 5~8㎡ 기준 한 포. 색상은 타일과 맞춰 주세요.",
           emoji: "🪣",
-          url: ""
+          url: "https://link.coupang.com/a/iXtOuVAmtw"
         },
         {
           name: "페인트 롤러 세트",
           desc: "4인치·7인치 세트. 롤러 커버는 소모품이라 여유 있게.",
           emoji: "🖌️",
-          url: ""
+          url: "https://link.coupang.com/a/iXtQeBsxy1"
         },
         {
           name: "마스킹 테이프 24·48mm",
           desc: "창틀·몰딩 경계 작업에. 두세 개는 있어야 합니다.",
           emoji: "🧻",
-          url: ""
+          url: "https://link.coupang.com/a/iXtRRgZYcu"
         }
       ]
     }
